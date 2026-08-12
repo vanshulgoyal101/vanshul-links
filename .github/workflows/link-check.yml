@@ -1,0 +1,22 @@
+name: link-check
+
+# Weekly (and on-demand) health check of every owned destination on the
+# linktree. Non-gating: it runs on a schedule, not on push/PR, so a flaky
+# external host never blocks development — a failure just flags a broken link.
+on:
+  schedule:
+    - cron: '0 6 * * 1' # Mondays 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+      - run: node scripts/check-links.mjs

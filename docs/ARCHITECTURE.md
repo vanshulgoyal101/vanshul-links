@@ -59,6 +59,7 @@ Service worker (after first visit)
 | `sitemap.xml`, `robots.txt` | Generated + kept in sync on push. |
 | `sitemap.config.json` | Declares `baseUrl`, the include globs, etc. |
 | `scripts/gen-sitemap.mjs` | Zero-dependency sitemap/robots generator (shared across the vanshul.com repos). |
+| `scripts/check-links.mjs` | Link-health checker: probes every owned destination; used by the scheduled workflow. |
 | `.well-known/security.txt` | RFC 9116 security contact. |
 | `tests/` | vitest suite that encodes every invariant below. |
 
@@ -111,6 +112,11 @@ borrows it from a sibling project.
 - **`.github/workflows/ci.yml`** runs `npm test` on every push and PR.
 - **`.github/workflows/sitemap.yml`** regenerates `sitemap.xml`/`robots.txt` on
   push (ignoring its own output to avoid a loop) and commits any change.
+- **`.github/workflows/link-check.yml`** runs `scripts/check-links.mjs` weekly
+  (and on demand) to probe every owned destination. It is **non-gating** —
+  scheduled, not on push/PR — so a flaky external host never blocks work; a
+  failure simply flags a broken link. Bot-hostile social hosts (X, LinkedIn,
+  Instagram) are skipped to keep the signal clean.
 - This page's sitemap is also referenced by the family-wide sitemap index at
   `https://vanshul.com/sitemap-index.xml`, the single sitemap submitted to Google
   Search Console.

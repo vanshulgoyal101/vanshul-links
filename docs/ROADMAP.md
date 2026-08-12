@@ -19,7 +19,8 @@ additions.
 | Branded 404 | `noindex`, routes back home. |
 | `security.txt` | RFC 9116 contact under `/.well-known/`. |
 | Accessibility pass | Landmarks, labelled icons, focus rings, reduced-motion. |
-| Test suite + CI | 58 vitest tests across SEO, links, structure, PWA, pages, sitemap; run on every push/PR. |
+| Automated link-health check | Scheduled, non-gating CI job probes every owned destination; skips bot-hostile socials. |
+| Test suite + CI | 63 vitest tests across SEO, links, structure, PWA, pages, sitemap, and link-check; run on every push/PR. |
 | Documentation | README + `docs/{ARCHITECTURE,SEO,ROADMAP}.md`. |
 
 ## Proposed / potential
@@ -33,10 +34,6 @@ Ideas worth considering, each with the bar it must clear to be worth doing.
 - **Click-through analytics surfaced on-page** — "most visited" ordering. Requires
   reading aggregated beacon data; belongs in a separate Worker + endpoint, never
   inline. Do only if the ordering insight is actually acted on.
-- **Automated link health check in CI** — a scheduled job that HEAD-requests every
-  destination and fails if one 404s/redirects unexpectedly. High value, low cost;
-  the main blocker is flaky external hosts, so it should be a *warning* job, not a
-  merge gate. **Most likely next addition.**
 - **Icon generation script in-repo** — a committed `scripts/gen-icons.mjs` (with
   `sharp` as an optional dev dep) so icons regenerate without borrowing a sibling
   repo's install. Worth it only if `icon.svg` starts changing often.

@@ -26,10 +26,13 @@ is the page that ships.
   and offline shell.
 - **Production pages** — a branded, `noindex` 404 and an RFC 9116
   `.well-known/security.txt`.
+- **Link-health check** — a scheduled, non-gating CI job that probes every owned
+  destination so a broken link is caught within a week.
 - **Accessible** — semantic landmarks, `aria-label`led icon buttons, visible
   focus rings, and `prefers-reduced-motion` support.
-- **Tested** — a [vitest](https://vitest.dev) suite (58 tests) guards the SEO
-  metadata, link inventory, page structure, PWA, pages, and sitemap generator.
+- **Tested** — a [vitest](https://vitest.dev) suite (63 tests) guards the SEO
+  metadata, link inventory, page structure, PWA, pages, sitemap generator, and
+  link checker.
 
 ---
 
@@ -72,12 +75,13 @@ vanshul-links/
 ├── sitemap.config.json     # Inputs for the sitemap generator
 ├── .well-known/security.txt# RFC 9116 security contact
 ├── scripts/gen-sitemap.mjs # Zero-dep sitemap + robots generator
+├── scripts/check-links.mjs # Link-health checker (scheduled CI)
 ├── tests/                  # vitest suite (see below)
 ├── docs/                   # ARCHITECTURE, SEO, ROADMAP
 ├── package.json            # Dev tooling + scripts (no runtime deps)
 ├── CNAME                   # links.vanshul.com (GitHub Pages custom domain)
 ├── .nojekyll               # Serve files as-is (no Jekyll processing)
-└── .github/workflows/      # ci.yml (tests) + sitemap.yml (auto-sitemap)
+└── .github/workflows/      # ci.yml, sitemap.yml, link-check.yml
 ```
 
 ---
@@ -140,6 +144,8 @@ that keep the page correct and discoverable:
   ignores cross-origin, and the head wires the manifest + SW registration.
 - **`tests/pages.test.js`** — the 404 is a complete `noindex` page that links
   home, and `security.txt` has a contact and a non-expired `Expires`.
+- **`tests/check-links.test.js`** — the link extractor and the bot-host skip
+  filter behind the scheduled link-health check.
 
 CI runs `npm test` on every push and pull request via
 [`.github/workflows/ci.yml`](.github/workflows/ci.yml).

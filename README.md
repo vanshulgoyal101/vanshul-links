@@ -21,10 +21,15 @@ is the page that ships.
 - **First-class SEO** — a rich JSON-LD `@graph`, full Open Graph + Twitter
   cards, canonical URL, and an auto-synced sitemap/robots. See
   [docs/SEO.md](docs/SEO.md).
+- **Installable PWA** — web app manifest, maskable icons, and a versioned
+  service worker (network-first HTML, cache-first assets) for add-to-home-screen
+  and offline shell.
+- **Production pages** — a branded, `noindex` 404 and an RFC 9116
+  `.well-known/security.txt`.
 - **Accessible** — semantic landmarks, `aria-label`led icon buttons, visible
   focus rings, and `prefers-reduced-motion` support.
-- **Tested** — a [vitest](https://vitest.dev) suite guards the SEO metadata,
-  link inventory, page structure, and the sitemap generator.
+- **Tested** — a [vitest](https://vitest.dev) suite (58 tests) guards the SEO
+  metadata, link inventory, page structure, PWA, pages, and sitemap generator.
 
 ---
 
@@ -56,17 +61,35 @@ listed — the test suite fails if an unlaunched domain is linked.
 ```
 vanshul-links/
 ├── index.html              # The entire page (markup + inline CSS + JS)
+├── 404.html                # Branded, noindex not-found page
+├── manifest.webmanifest    # PWA manifest (installability)
+├── sw.js                   # Service worker (offline shell)
+├── icon.svg                # Square maskable icon source
+├── icon-192.png / icon-512.png / apple-touch-icon.png  # Rasterized icons
 ├── og.png / og.svg         # 1200×630 Open Graph preview image (raster + source)
 ├── sitemap.xml             # Single-URL sitemap (auto-generated)
 ├── robots.txt              # Allow all + sitemap reference (auto-synced)
 ├── sitemap.config.json     # Inputs for the sitemap generator
+├── .well-known/security.txt# RFC 9116 security contact
 ├── scripts/gen-sitemap.mjs # Zero-dep sitemap + robots generator
 ├── tests/                  # vitest suite (see below)
+├── docs/                   # ARCHITECTURE, SEO, ROADMAP
 ├── package.json            # Dev tooling + scripts (no runtime deps)
 ├── CNAME                   # links.vanshul.com (GitHub Pages custom domain)
 ├── .nojekyll               # Serve files as-is (no Jekyll processing)
 └── .github/workflows/      # ci.yml (tests) + sitemap.yml (auto-sitemap)
 ```
+
+---
+
+## Documentation
+
+- **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** — how it's built, the
+  zero-backend rationale, request flow, the PWA caching strategy, and the icon
+  pipeline.
+- **[docs/SEO.md](docs/SEO.md)** — the full search + social strategy.
+- **[docs/ROADMAP.md](docs/ROADMAP.md)** — shipped, proposed, and intentionally
+  declined features.
 
 ---
 
@@ -112,6 +135,11 @@ that keep the page correct and discoverable:
   well-formed and consistent, plus a black-box run of `gen-sitemap.mjs` in a
   temp directory covering its file→URL mapping, exclude rules, `og:image`
   extraction, and robots sync.
+- **`tests/pwa.test.js`** — the manifest is valid and installable, every icon
+  exists as a real PNG/SVG, the service worker handles install/activate/fetch and
+  ignores cross-origin, and the head wires the manifest + SW registration.
+- **`tests/pages.test.js`** — the 404 is a complete `noindex` page that links
+  home, and `security.txt` has a contact and a non-expired `Expires`.
 
 CI runs `npm test` on every push and pull request via
 [`.github/workflows/ci.yml`](.github/workflows/ci.yml).

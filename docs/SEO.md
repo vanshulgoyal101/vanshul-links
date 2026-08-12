@@ -56,6 +56,9 @@ Core Web Vitals feed ranking. This page keeps them effortless:
 - `preconnect`/`dns-prefetch` to the analytics origin.
 - `theme-color` + `color-scheme: dark` for a native-feeling mobile UI.
 - `prefers-reduced-motion` support (accessibility is a quality signal).
+- **Installable PWA** — a web app manifest, maskable icons, and a service worker
+  make the page add-to-home-screen capable, which improves mobile engagement and
+  repeat-visit signals. See [ARCHITECTURE.md](ARCHITECTURE.md#pwa-caching-strategy).
 
 ## 6. Cross-property sitemap index
 

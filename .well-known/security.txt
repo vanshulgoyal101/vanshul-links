@@ -1,0 +1,5 @@
+Contact: mailto:vanshulg101@gmail.com
+Contact: https://github.com/vanshulgoyal101
+Expires: 2027-08-13T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://links.vanshul.com/.well-known/security.txt

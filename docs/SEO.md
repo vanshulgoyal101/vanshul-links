@@ -25,18 +25,21 @@ coherent knowledge object rather than four loose blobs:
 | --- | --- |
 | `WebSite` | Declares the site and its publisher. |
 | `ProfilePage` | Marks the page type and its `primaryImageOfPage`. |
-| `Person` | The identity: `name`, `alternateName` ("Curious Ape"), and a `sameAs` array of every profile/project — the core signal for a Knowledge Panel. |
+| `Person` | The identity: `name`, `alternateName` ("Curious Ape"), a `sameAs` array of every profile/project, and a `knowsAbout` topic list — the core signals for a Knowledge Panel. |
 | `ItemList` | An ordered list of the projects, each a `ListItem` with `position`, `url`, and `name`. |
 
 `sameAs` is the highest-leverage field here: it tells Google that this page, the
 portfolio, the games arcade, GitHub, X, LinkedIn, and Instagram are all the same
-entity, consolidating authority across them.
+entity, consolidating authority across them. `knowsAbout` adds the topics the
+entity is associated with (web development, PWAs, browser games, SEO, AI agents,
+MCP, developer tools), reinforcing relevance for those subjects.
 
 ## 3. Social / link previews
 
 - **Open Graph** — `og:type=profile`, `og:title`, `og:description`, `og:url`,
   and a `1200×630` `og:image` with explicit `width`/`height`/`alt`.
-- **Twitter** — `summary_large_image` with its own image + alt.
+- **Twitter** — `summary_large_image` with its own image + alt, and
+  `twitter:site`/`twitter:creator` attributing the card to `@goyal_vanshul`.
 
 Correct dimensions and an absolute `https` image URL are asserted in tests so a
 future edit can't silently break the preview.

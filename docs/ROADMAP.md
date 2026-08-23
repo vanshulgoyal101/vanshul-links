@@ -11,8 +11,8 @@ additions.
 | --- | --- |
 | Grouped link layout | Featured hero + Projects grid + Connect row. |
 | Horizontal avatar/name header | SVG "curious ape" beside the name. |
-| Rich SEO metadata | Title/description budgets, canonical, robots, Open Graph + Twitter cards. |
-| JSON-LD `@graph` | `WebSite` + `ProfilePage` + `Person` (with `sameAs` + `description`) + `ItemList`. |
+| Rich SEO metadata | Title/description budgets, canonical, robots, Open Graph + Twitter cards (with `twitter:site`/`creator` attribution). |
+| JSON-LD `@graph` | `WebSite` + `ProfilePage` + `Person` (with `sameAs`, `knowsAbout` topics + `description`) + `ItemList`. |
 | `rel="me"` identity links | IndieWeb verification on owned profiles. |
 | Auto sitemap + robots | Generated and committed on push; part of the family sitemap index. |
 | Installable PWA | Manifest, maskable icons, versioned service worker (network-first HTML, cache-first assets). |

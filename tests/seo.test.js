@@ -73,6 +73,11 @@ describe('Open Graph & Twitter cards', () => {
     expect(metaName('twitter:image')).toBe(OG_IMAGE);
     expect(metaName('twitter:image:alt')).toBeTruthy();
   });
+
+  it('attributes the Twitter card to the owner handle', () => {
+    expect(metaName('twitter:site')).toBe('@goyal_vanshul');
+    expect(metaName('twitter:creator')).toBe('@goyal_vanshul');
+  });
 });
 
 describe('JSON-LD structured data', () => {
@@ -92,6 +97,16 @@ describe('JSON-LD structured data', () => {
     expect(Array.isArray(person.sameAs)).toBe(true);
     expect(person.sameAs.length).toBeGreaterThanOrEqual(8);
     for (const url of person.sameAs) expect(url).toMatch(/^https:\/\//);
+  });
+
+  it('enriches the Person with a knowsAbout topic list for entity SEO', () => {
+    const person = graphNode('Person');
+    expect(Array.isArray(person.knowsAbout)).toBe(true);
+    expect(person.knowsAbout.length).toBeGreaterThanOrEqual(4);
+    for (const topic of person.knowsAbout) {
+      expect(typeof topic).toBe('string');
+      expect(topic.trim().length).toBeGreaterThan(0);
+    }
   });
 
   it('lists projects in sequential, https ItemList order', () => {

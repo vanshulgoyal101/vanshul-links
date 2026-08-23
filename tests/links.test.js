@@ -6,6 +6,7 @@ const href = (el) => el.getAttribute('href');
 const FEATURED = 'https://vanshul.com';
 const PROJECTS = new Set([
   'https://games.vanshul.com',
+  'https://adbrain.vanshul.com',
   'https://blog.vanshul.com',
   'https://tools.vanshul.com',
   'https://ctx.vanshul.com',

@@ -11,6 +11,7 @@ const PROJECTS = new Set([
   'https://tools.vanshul.com',
   'https://ctx.vanshul.com',
   'https://mcp.vanshul.com',
+  'https://vbrain.vanshul.com',
   'https://solaride.in',
 ]);
 const SOCIALS = new Set([

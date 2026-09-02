@@ -42,10 +42,12 @@ is the page that ships.
 | --- | --- | --- |
 | Featured | vanshul.com | `https://vanshul.com` |
 | Project | Games | `https://games.vanshul.com` |
+| Project | AdBrain | `https://adbrain.vanshul.com` |
 | Project | Blog | `https://blog.vanshul.com` |
 | Project | Tools | `https://tools.vanshul.com` |
 | Project | ctx | `https://ctx.vanshul.com` |
 | Project | mcp | `https://mcp.vanshul.com` |
+| Project | vbrain | `https://vbrain.vanshul.com` |
 | Project | Solaride | `https://solaride.in` |
 | Connect | GitHub | `https://github.com/vanshulgoyal101` |
 | Connect | X / Twitter | `https://x.com/goyal_vanshul` |

@@ -13,10 +13,10 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: #e8edf4;
+      font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #f3f5f8;
       background:
-        radial-gradient(1200px 600px at 50% -10%, #141a24, transparent 70%),
+        radial-gradient(900px 520px at 50% -12%, #161c26, transparent 68%),
         #0e1116;
       min-height: 100dvh;
       display: grid;
@@ -26,33 +26,35 @@
       -webkit-font-smoothing: antialiased;
     }
     .avatar {
-      width: 84px; height: 84px; border-radius: 50%;
-      display: grid; place-items: center; margin: 0 auto 20px;
-      background: linear-gradient(145deg, #1e2733, #10151d);
-      border: 1px solid #263140;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      width: 56px; height: 56px; border-radius: 50%;
+      display: grid; place-items: center; margin: 0 auto 24px;
+      color: #f3f5f8;
+      background: rgba(255, 255, 255, 0.026);
+      border: 1px solid rgba(255, 255, 255, 0.075);
     }
-    h1 { font-size: 3rem; letter-spacing: -0.03em; }
-    p { margin-top: 10px; color: #8b98a9; font-size: 1.05rem; }
+    .avatar svg { width: 32px; height: 32px; display: block; }
+    h1 { font-size: 2.6rem; font-weight: 600; letter-spacing: -0.03em; }
+    p { margin-top: 8px; color: #868d99; font-size: .95rem; }
     a.home {
-      display: inline-block; margin-top: 26px; padding: 12px 22px;
-      background: linear-gradient(135deg, #1b2c4a, #172033);
-      border: 1px solid #2c477a; border-radius: 12px;
-      color: #e8edf4; text-decoration: none; font-weight: 600;
-      transition: transform .15s ease, border-color .15s ease;
+      display: inline-block; margin-top: 26px; padding: 11px 20px;
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px;
+      color: #f3f5f8; text-decoration: none; font-weight: 550; font-size: .92rem;
+      letter-spacing: -0.01em;
+      transition: background .18s ease, border-color .18s ease;
     }
-    @media (hover: hover) { a.home:hover { transform: translateY(-2px); border-color: #6ea8fe; } }
-    a.home:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(110,168,254,0.35); }
-    @media (prefers-reduced-motion: reduce) { a.home { transition: none; } a.home:hover { transform: none; } }
+    @media (hover: hover) { a.home:hover { background: rgba(255, 255, 255, 0.09); border-color: rgba(255, 255, 255, 0.2); } }
+    a.home:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(243, 245, 248, 0.32); border-color: transparent; }
+    @media (prefers-reduced-motion: reduce) { a.home { transition: none; } }
   </style>
 </head>
 <body>
   <main>
     <div class="avatar" aria-hidden="true">
-      <svg viewBox="0 0 64 64" width="50" height="50" fill="none" stroke="#e8edf4" stroke-width="3.2" stroke-linecap="round">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
         <circle cx="32" cy="32" r="26"/>
-        <circle cx="23" cy="27" r="2.2" fill="#e8edf4" stroke="none"/>
-        <circle cx="41" cy="27" r="2.2" fill="#e8edf4" stroke="none"/>
+        <circle cx="23" cy="27" r="2.2" fill="currentColor" stroke="none"/>
+        <circle cx="41" cy="27" r="2.2" fill="currentColor" stroke="none"/>
         <path d="M21 38c4 5 18 5 22 0"/>
       </svg>
     </div>

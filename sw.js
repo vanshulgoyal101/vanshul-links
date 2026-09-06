@@ -2,7 +2,7 @@
 // Strategy: network-first for navigations (so link edits go live immediately,
 // with an offline fallback), cache-first for same-origin static assets. Bump
 // CACHE when shipping asset changes so old caches are purged on activate.
-const CACHE = 'links-v1';
+const CACHE = 'links-v2';
 const ASSETS = [
   '/',
   '/index.html',

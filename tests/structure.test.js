@@ -26,6 +26,15 @@ describe('section labelling', () => {
 });
 
 describe('project cards', () => {
+  it('uses the canonical AdBrain line mark without changing the host palette', () => {
+    const mark = document.querySelector('[data-project="adbrain"] svg');
+    expect(mark.getAttribute('data-brand')).toBe('adbrain');
+    expect(mark.getAttribute('stroke')).toBe('currentColor');
+    expect(mark.querySelectorAll('path').length).toBe(8);
+    expect(mark.querySelector('path').getAttribute('d')).toBe('M12 18V5');
+    expect(mark.closest('.icon').getAttribute('aria-hidden')).toBe('true');
+  });
+
   it('gives every card an icon, label, and sub-text', () => {
     const cards = [...document.querySelectorAll('a.card')];
     expect(cards.length).toBeGreaterThan(0);

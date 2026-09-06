@@ -14,6 +14,16 @@ const PROJECTS = new Set([
   'https://vbrain.vanshul.com',
   'https://solaride.in',
 ]);
+const PROJECT_ORDER = [
+  'https://games.vanshul.com',
+  'https://adbrain.vanshul.com',
+  'https://vbrain.vanshul.com',
+  'https://solaride.in',
+  'https://blog.vanshul.com',
+  'https://tools.vanshul.com',
+  'https://ctx.vanshul.com',
+  'https://mcp.vanshul.com',
+];
 const SOCIALS = new Set([
   'https://github.com/vanshulgoyal101',
   'https://x.com/goyal_vanshul',
@@ -51,6 +61,11 @@ describe('link inventory', () => {
   it('lists exactly the expected live project cards', () => {
     const cards = new Set([...document.querySelectorAll('a.card')].map(href));
     expect(cards).toEqual(PROJECTS);
+  });
+
+  it('keeps product projects ahead of infrastructure projects', () => {
+    const cards = [...document.querySelectorAll('a.card')].map(href);
+    expect(cards).toEqual(PROJECT_ORDER);
   });
 
   it('lists exactly the expected social profiles', () => {

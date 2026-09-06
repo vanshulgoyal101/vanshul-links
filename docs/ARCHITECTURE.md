@@ -68,7 +68,9 @@ Service worker (after first visit)
 - **Layout:** a horizontal header (avatar + name/tagline), a featured hero card
   (`vanshul.com`), a two-column **Projects** grid, and a **Connect** row of icon
   buttons. All spacing/color is driven by CSS custom properties at the top of the
-  `<style>` block.
+  `<style>` block. Each project card has a stable `data-project` identity; icon
+  colors are keyed to that identity rather than grid position, so reordering the
+  registry cannot silently change a project's visual treatment.
 - **No framework, no build:** the file you edit is the file that ships. This keeps
   the markup crawler-perfect and the repo approachable.
 - **Accessibility:** one `h1`, labelled landmarks and sections, `aria-label` +

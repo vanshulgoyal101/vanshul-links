@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { document } from './helpers.js';
+import { document, html } from './helpers.js';
 
 describe('landmark structure', () => {
   it('has a single main, footer, and h1', () => {
@@ -34,6 +34,23 @@ describe('project cards', () => {
       expect(card.querySelector('.label')?.textContent.trim()).toBeTruthy();
       expect(card.querySelector('.sub')?.textContent.trim()).toBeTruthy();
     }
+  });
+
+  it('uses stable project identities instead of positional styling', () => {
+    const cards = [...document.querySelectorAll('a.card')];
+    const identities = cards.map((card) => card.getAttribute('data-project'));
+    expect(identities).toEqual([
+      'games',
+      'adbrain',
+      'vbrain',
+      'solaride',
+      'blog',
+      'tools',
+      'ctx',
+      'mcp',
+    ]);
+    expect(new Set(identities).size).toBe(cards.length);
+    expect(html).not.toMatch(/\.card:nth-child\(/);
   });
 });
 
